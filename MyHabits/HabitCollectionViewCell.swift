@@ -40,16 +40,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private(set) lazy var checkButton: UIButton = {
         let button = UIButton()
-        button.setTitle("V", for: .selected)
-        button.setTitleColor(.white, for: .selected)
         button.clipsToBounds = true
-        //button.addTarget(self, action: action, for: .touchUpInside)
         button.layer.borderWidth = 2.0
         button.layer.borderColor = CGColor(red: 41.0/255.0, green: 109.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         button.bounds = CGRect(x: 0, y: 0, width: 25, height: 25)
         button.backgroundColor = color
         button.layer.cornerRadius = 18
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

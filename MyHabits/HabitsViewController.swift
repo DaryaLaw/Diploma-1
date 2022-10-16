@@ -73,11 +73,12 @@ class HabitsViewController: UIViewController {
         self.navigationController?.pushViewController(didTapButton, animated: true)
     }
     
-    @objc func checkHabit() {
-        let cell = HabitCollectionViewCell()
-        cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-        collectionView.reloadData()
-        }
+//    @objc func checkHabit(habit: Habit) {
+//        habit.isAlreadyTakenToday = true
+//        let text = habit.name
+//        let bool = habit.isAlreadyTakenToday
+//        print("\(text)  --- \(bool)")
+//        }
     
 }
 
@@ -107,6 +108,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as? ProgressCollectionViewCell {
                 cell.layer.cornerRadius = 10
                 cell.progressView.progress = HabitsStore.shared.todayProgress
+                cell.percentLabel.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
                 return cell
             }
         case 1:
@@ -115,7 +117,8 @@ extension HabitsViewController: UICollectionViewDataSource {
                 cell.habitNameLabel.text = HabitsStore.shared.habits[indexPath.item].name
                 cell.timeToDoHabitLabel.text = HabitsStore.shared.habits[indexPath.item].dateString
                 cell.color = HabitsStore.shared.habits[indexPath.item].color
-                cell.checkButton.addTarget(self, action: #selector(checkHabit), for: .touchUpInside)
+                let habit = HabitsStore.shared.habits[indexPath.item]
+//                cell.checkButton.addTarget(self, action: #selector(checkHabit(habit: habit)), for: .touchUpInside)
                 return cell
             }
         default:

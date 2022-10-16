@@ -19,9 +19,8 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var percentLabel: UILabel = {
+    private(set) lazy var percentLabel: UILabel = {
         let label = UILabel()
-        label.text = "50%" //должно быть количество выполненных привычек.
         label.font = .systemFont(ofSize: 13)
         label.textAlignment = .right
         label.textColor = .systemGray2
@@ -31,7 +30,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private(set) lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
-        progressView.setProgress(0.5, animated: false)
         progressView.progressTintColor = .habitViolet
         progressView.trackTintColor = .systemGray2
         progressView.layer.cornerRadius = 8
