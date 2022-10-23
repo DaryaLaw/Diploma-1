@@ -27,7 +27,6 @@ class HabitView: UIView {
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 17, weight: .regular)
         textField.autocapitalizationType = .none
-        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -42,13 +41,12 @@ class HabitView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private lazy var colorPickerView: UIPickerView = {
-        let pickerView = UIPickerView()
-        pickerView.clipsToBounds = true
-//        pickerView.layer.cornerRadius = 5
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        return pickerView
+    private(set) lazy var selectColorButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .habitLightestGray
+        button.layer.cornerRadius = 15
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var timeLabel: UILabel = {
@@ -107,7 +105,7 @@ class HabitView: UIView {
         addSubview(nameLabel)
         addSubview(nameTextField)
         addSubview(colorLabel)
-        addSubview(colorPickerView)
+        addSubview(selectColorButton)
         addSubview(timeLabel)
         addSubview(timeDatePicker)
         addSubview(everydayLabel)
@@ -131,12 +129,12 @@ class HabitView: UIView {
             colorLabel.widthAnchor.constraint(equalToConstant: 40),
             colorLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            colorPickerView.topAnchor.constraint(equalTo: self.colorLabel.bottomAnchor, constant: 7),
-            colorPickerView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            colorPickerView.widthAnchor.constraint(equalToConstant: 30),
-            colorPickerView.heightAnchor.constraint(equalToConstant: 30),
+            selectColorButton.topAnchor.constraint(equalTo: self.colorLabel.bottomAnchor, constant: 7),
+            selectColorButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            selectColorButton.widthAnchor.constraint(equalToConstant: 30),
+            selectColorButton.heightAnchor.constraint(equalToConstant: 30),
             
-            timeLabel.topAnchor.constraint(equalTo: self.colorPickerView.bottomAnchor, constant: 15),
+            timeLabel.topAnchor.constraint(equalTo: self.selectColorButton.bottomAnchor, constant: 15),
             timeLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             timeLabel.widthAnchor.constraint(equalToConstant: 60),
             timeLabel.heightAnchor.constraint(equalToConstant: 18),

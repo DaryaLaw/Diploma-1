@@ -91,14 +91,6 @@ extension HabitDetailsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
         cell.textLabel?.text = HabitsStore.shared.dates[indexPath.row].description
-//        Даты с момента установки приложения с разницей в один день.
-//        public var dates: [Date] {
-//            guard let startDate = userDefaults.object(forKey: "start_date") as? Date else {
-//                return []
-//            }
-//            return Date.dates(from: startDate, to: .init())
-//        }
-        
         return cell
     }
 }

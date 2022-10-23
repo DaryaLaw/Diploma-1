@@ -37,16 +37,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         return progressView
     }()
     
-    //Прогресс выполнения добавленных привычек. Привычка считается выполненной, если пользователь добавлял время больше 5 раз.
-    //Возвращает значение от 0 до 1.
-//    public var todayProgress: Float {
-//        guard habits.isEmpty == false else {
-//            return 0
-//        }
-//        let takenTodayHabits = habits.filter { $0.isAlreadyTakenToday }
-//        return Float(takenTodayHabits.count) / Float(habits.count)
-//    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

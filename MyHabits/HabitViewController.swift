@@ -9,6 +9,8 @@ import UIKit
 
 class HabitViewController: UIViewController {
     
+    private var habitColor: UIColor = .clear
+    
     private var addOrEditHabit: String
     private var habitView: HabitView? {
         if let view = self.view as? HabitView {
@@ -35,6 +37,7 @@ class HabitViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         habitView?.deleteButton.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
+        configureColorButton()
     }
     
     private func configureView() {
@@ -62,7 +65,7 @@ class HabitViewController: UIViewController {
     @objc func saveHabit() {
         guard let text = habitView?.nameTextField.text else {return}
         guard let date = habitView?.timeDatePicker.date else {return}
-        let newHabit = Habit(name: text, date: date, color: .red)
+        let newHabit = Habit(name: text, date: date, color: habitColor)
         HabitsStore.shared.habits.append(newHabit)
 //        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.popViewController(animated: true)
@@ -92,5 +95,22 @@ class HabitViewController: UIViewController {
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
         self.present(alertController, animated: true)
+    }
+    
+    private func configureColorButton() {
+        habitView?.selectColorButton.addTarget(self, action: #selector(actionColorButton), for: .touchUpInside)
+    }
+    @objc func actionColorButton() {
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        present(colorPicker, animated: true)
+    }
+}
+
+extension HabitViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        let color = viewController.selectedColor
+        self.habitColor = color
+        habitView?.selectColorButton.backgroundColor = color 
     }
 }

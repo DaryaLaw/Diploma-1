@@ -115,10 +115,9 @@ extension HabitsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCell", for: indexPath) as? HabitCollectionViewCell {
                 cell.layer.cornerRadius = 10
                 cell.habitNameLabel.text = HabitsStore.shared.habits[indexPath.item].name
+                cell.habitNameLabel.textColor = HabitsStore.shared.habits[indexPath.item].color
                 cell.timeToDoHabitLabel.text = HabitsStore.shared.habits[indexPath.item].dateString
-                cell.color = HabitsStore.shared.habits[indexPath.item].color
-                let habit = HabitsStore.shared.habits[indexPath.item]
-//                cell.checkButton.addTarget(self, action: #selector(checkHabit(habit: habit)), for: .touchUpInside)
+                cell.checkButton.layer.borderColor = HabitsStore.shared.habits[indexPath.item].color.cgColor
                 return cell
             }
         default:
@@ -148,7 +147,6 @@ extension HabitsViewController: UICollectionViewDataSource {
             default:
                 print("error section")
             }
-            
         }
         
         func collectionView(_ collectionView: UICollectionView,
@@ -161,5 +159,4 @@ extension HabitsViewController: UICollectionViewDataSource {
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
         }
-        
     }
